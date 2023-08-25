@@ -11,15 +11,27 @@ struct FeedView: View {
     @Binding var index: Int
 
     var body: some View {
-        VStack{
-            Text("Feed")
-//            Text(index)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 18) {
+                
+                TweetCellView(tweet: "Hey Tim, are those regular glasses?", tweetImage: "post")
+                
+                Divider()
+                
+                ForEach(1...20, id: \.self) { _ in
+                    TweetCellView(tweet: sampleText)
+                    Divider()
+                }
+            }
+            .padding(.top)
+            .padding(.horizontal)
+            .zIndex(0)
         }
     }
 }
 
 //struct FeedView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        FeedView(index: <#Binding<Home>#>)
+//        FeedView(index: )
 //    }
 //}

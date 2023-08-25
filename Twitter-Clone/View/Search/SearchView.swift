@@ -9,16 +9,26 @@ import SwiftUI
 
 struct SearchView: View {
     @Binding var index: Int
+    @State var text = ""
+    @State var isEditing = false
+
 
     var body: some View {
         VStack {
-            Text("Search")
+            
+            SearchBar(text: $text, isEditing: $isEditing)
+            
+            List(0..<9) { i in
+                SearchCell(tag: "hello", tweets: String(i))
+            }
         }
     }
 }
 
-//struct SearchView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchView()
-//    }
-//}
+struct SearchView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        @State var previewIndex = 1
+        SearchView(index: $previewIndex)
+    }
+}
